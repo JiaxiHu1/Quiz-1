@@ -1,4 +1,4 @@
-import random
+
 
 '''
 Create a Weapon Class definition according to the following specs:
@@ -22,33 +22,23 @@ every time the method is called. When the bullet count reaches zero, it should c
 the attribute 'status' to 'Inactive'
 
 '''
-class Weapon:
-    def __init__(self,name,b,speed,r,sta):
-        self.__name = name 
-        self.__bullets = b
-        self.__speed = speed 
-        self.__range = r 
-        self.__status = sta
-    
-    def accessor_name(self):
-        self.__name
-    
-    def accessor_bullets(self):
-        self.__bullets
-    
-    def accessor_speed(self):
-        self.__speed
-    
-    def accessor_range(self):
-        self.__range 
+import random
 
-    def accessor_status(self):
-        self.__status 
+class Weapon:
+    def __init__(self,name,speed,range):
+        #only put the users input
+        self.__name = name 
+        self.__bullets = random.randrange(10,100000)
+        self.__speed = speed 
+        self.__range = range
+        self.__status = "Active"
     
-    def fire_bullet(self,b,sta):
+
+    
+    def fire_bullet(self):
         self.__bullets -= 1 
-        if self.__bullets == 0:
-            self.__status == "Inactivate"
+        if(self.__bullets == 0):
+            self.__status = "Inactive"
 
     def get_name(self):
         return self.__name

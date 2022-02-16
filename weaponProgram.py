@@ -1,5 +1,4 @@
-import weaponClass as w
-import csv
+
 
 
 '''
@@ -13,26 +12,25 @@ HINT: use end='\r' in your print statement).
 
 HINT: Follow the comments for each line to help with the logic of the problem.
 '''
+import weaponClass as w
+import csv
 
 
 # create a file object to open the file in read mode
-infile = open('weapon.txt','r')
-readfile = infile.read()
+infile = open('weapons.csv','r')
+
 
 
 # create a csv object from the file object
-outfile = open("weaponResult.csv","w")
-
+readfile = csv.reader(infile, delimiter=',')
 
 
 #skip the header row
 next(readfile)    
 
 
-
-
 #create an empty dictionary named 'weapons_dict'
-weapons_dict = {"Name":{"Bullets"}} 
+weapons_dict = {} 
 
 
 
@@ -40,27 +38,35 @@ weapons_dict = {"Name":{"Bullets"}}
 
     #use variables for name,speed and range (optional)
 for record in readfile:
-    outfile.writerow((record[0], record[1], record[2]))
+    name = record[0]
+    speed = record[1]
+    r = record[2]
+
 
 
     
 
     # create an instance of the weapon object using the 
     # specs from the csv file (name,speed and range) 
+    my_weapon = w.Weapon(name,speed,r)
     
 
     # append the name and bullet count to 'weapons_dict'
+    weapons_dict[my_weapon.get_name()] = my_weapon.get_bullets()
+
     
 
 
     # print out the name of the weapon using the appropriate method of the object 
+    print(my_weapon.get_name())
     
     # print out the speed of the weapon using the appropriate method of the object
+    print(my_weapon.get_speed())
     
     # print out the range of the weapon using the appropriate method of the object
-    
+    print(my_weapon.get_range())
     # print out the number of bullets of the weapon using the appropriate method of the object
-    
+    print(my_weapon.get_bullets())
 
     #use an input statement to halt the program and wait for the user - 
     input("Press any key to fire the weapon")
@@ -69,27 +75,16 @@ for record in readfile:
     # use an appropriate loop to keep firing the weapon until all bullets run out
     
         # call the appropriate method to fire a bullet
-my_bullet = w.Weapon(name,b,speed,r,sta)
+    for num in range(my_weapon.get_bullets()): 
+        my_weapon.fire_bullet()
 
-
-       
         # print out the bullet count every time the weapon is fired
-my_bullet.fire_bullet(b,sta)
-print("the number of bullet will be:",mybullet.get_bullets(b))
+        print(my_weapon.get_bullets(),end='\r')
 
     
-
-
 #using a loop print out the name and number of bullets from the dictionary
-for b in range(10):
-    my_bullet.fire_bullet(b,sta)
-    print("the number of bullet will be:",mybullet.get_bullets(b))
-
-
-
-print(weapons_dict)
-
-outfile.close()
+for a in weapons_dict :
+    print(a,weapons_dict[a])
 
 
 
