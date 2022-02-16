@@ -7,7 +7,8 @@ import csv
 - Create an instance of the weapon object for each record. 
 - Create a dictionary that will contain the name of the weapon as the key and the number of bullets as the value. 
 - Print out details of each weapon using the object's methods only (as per comments below). 
-- Fire all bullets of the weapon and print a countdown of bullets remaining (run exe file to visualize, HINT: use end='\r' in your print statement).
+- Fire all bullets of the weapon and print a countdown of bullets remaining (run exe file to visualize, 
+HINT: use end='\r' in your print statement).
 - Print out the name of the weapon and the number of bullets from the dictionary.
 
 HINT: Follow the comments for each line to help with the logic of the problem.
@@ -15,20 +16,23 @@ HINT: Follow the comments for each line to help with the logic of the problem.
 
 
 # create a file object to open the file in read mode
-
+infile = open('weapon.txt','r')
+readfile = infile.read()
 
 
 # create a csv object from the file object
+outfile = open("weaponResult.csv","w")
 
 
 
 #skip the header row
+next(readfile)    
 
 
 
 
 #create an empty dictionary named 'weapons_dict'
-
+weapons_dict = {"Name":{"Bullets"}} 
 
 
 
